@@ -1,0 +1,183 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chikading</title>
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: aqua;
+            color: black;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* overflow: hidden; */
+        }
+
+        .sharks{
+            width: 100%;
+            height: 100vh;
+            background: black url('https://raw.githubusercontent.com/tsumiki0303/stars-animation/master/stars.gif') repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            animation: moveSharks 100s linear infinite;
+        }
+
+        @keyframes moveSharks {
+            from { background-position: 0 0;}
+            to { background-position: 10000px 10000px;}
+        }
+
+        .content{
+            text-align: center;
+            padding-top: 20vh;
+        }
+
+        h1{
+            font-size: 3rem;
+            color: #00ffff;
+            text-shadow: 0 0 10px, 0 0 20px #0ff;
+        }
+
+        p{
+            color: aliceblue;
+        }
+
+        button{
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background: #1e1e1e;
+            color: white;
+            border: 1px solid #0ff;
+            cursor: pointer; 
+            border-radius: 5px;
+        }
+
+        button:hover{
+            background: #0ff;
+            color: black;
+        }
+
+        #fact{
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        .popup{
+            display: none;
+            position: fixed;
+            z-index: 99;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .popup-card{
+            background: #1e1e1e;
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            position: absolute;
+            padding: 20px;
+            text-align: center;
+            columns: #fff;
+            box-shadow: 0 0 20px #0ff;
+            /* position: relative; */
+            /* animation: fadeIn 0.1s ease-in-out; */
+        }
+
+        .popup-card button{
+            margin-top: 15px;
+            padding: 8px 16px;
+            font-size: 1em;
+            background-color: #0ff;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .popup-card button:hover{
+            transform: scale(1.1);
+        }
+
+        .close-btn{
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            color: #0ff;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sharks"></div>
+    <div class="content">
+        <h1>SHARKS RANDOM FACTS!</h1>
+        <p>Discover the fascinating world of sharks!</p>
+        <button onclick="showFact()">Give me a shark fact</button>
+        <p id="fact"></p>
+
+        <div id="popup" class="popup">
+            <div class="popup-card">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                <p id="popup-fact">Shark fact!</p>
+                <button onclick="rollAnotherFact()">Roll</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const facts = [
+            "Sharks have been around longer dinosaurs -- over 400 million years!",
+            "Some sharks can glow in the dark -- like the lantern shark, whick uses bioluminescence",
+            "Sharks have a sixth sense — they can detect electric fields using special organs called ampullae of Lorenzini.",
+            "The whale shark is the largest fish in the ocean -- it can grow up to 40 feet long!",
+            "Sharks don’t have bones — their skeletons are made of cartilage, the same stuff as your nose and ears.",
+            "Some species of sharks don’t lay eggs — they give live birth.",
+            "Shark skin feels like sandpaper — it's covered in tiny scales called dermal denticles.",
+            "The Greenland shark can live for over 400 years, making it one of the longest-living vertebrates.",
+            "A great white shark can detet a single drop of blood in 25 gallons of water.",
+            "Not all sharks are fierce predators -- many are small and harmless, like the drawf lantern shark, which is only 8 inches long.",
+
+    ];
+
+        function showFact() {
+            const fact = facts[Math.floor(Math.random() * facts.length)];
+            document.getElementById("popup-fact").textContent = fact;
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        function rollAnotherFact(){
+            const fact = facts[Math.floor(Math.random() * facts.length)];
+            document.getElementById("popup-fact").textContent = fact;
+        }
+
+    </script>
+    
+</body>
+</html>
